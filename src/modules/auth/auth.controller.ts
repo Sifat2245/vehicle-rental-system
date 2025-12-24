@@ -27,13 +27,46 @@ const userSignup = async (req: Request, res: Response) => {
       data: userResponse,
     });
   } catch (err: any) {
-    return res.status(500).json({
+    return res.status(406).json({
       success: false,
       message: err.message || "Something went wrong",
     });
   }
 };
 
+const userSignin = async (req: Request, res: Response) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    try{
+      const result = await authServices.userSignin(email, password);
+
+      const response = {
+        token: result?.token,
+        user: {
+          id: result?.user?.id,
+          name: result?.user?.name,
+          email: result?.user?.email,
+          phone: result?.user?.phone,
+          role: result?.user?.role,
+        },
+      }
+      if(result){
+        return res.status(200).json({
+          success: true,
+          message: "Login successful",
+          data: response
+        })
+      }
+    }
+    catch(err: any) {
+      return res.status(406).json({
+        success: false,
+        message: err.message || "Something went wrong",
+      })
+    }
+};
+
 export const authController = {
   userSignup,
+  userSignin,
 };
