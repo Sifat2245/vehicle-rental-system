@@ -21,7 +21,7 @@ const userSignup = async (req: Request, res: Response) => {
       phone: result?.rows[0]?.phone,
       role: result?.rows[0]?.role,
     };
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
       message: "User registered successfully",
       data: userResponse,
@@ -51,10 +51,16 @@ const userSignin = async (req: Request, res: Response) => {
         },
       }
       if(result){
-        return res.status(200).json({
+        return res.status(201).json({
           success: true,
           message: "Login successful",
           data: response
+        })
+      }
+      else{
+        return res.status(400).json({
+          success: false,
+          message: "Login failed"
         })
       }
     }
