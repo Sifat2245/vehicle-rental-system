@@ -1,3 +1,4 @@
+import { get } from "http";
 import { pool } from "../../config/db";
 
 const postVehicle = async (payload: Record<string, unknown>) => {
@@ -22,6 +23,12 @@ const postVehicle = async (payload: Record<string, unknown>) => {
   return result;
 };
 
+const getVehicles = async () =>{
+  const result = await pool.query(`SELECT * FROM vehicles`)
+  return result;
+}
+
 export const vehicleServices = {
   postVehicle,
+  getVehicles
 };

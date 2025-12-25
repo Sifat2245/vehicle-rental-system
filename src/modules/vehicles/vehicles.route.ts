@@ -5,5 +5,6 @@ import role from "../../middlewares/role";
 const router = Router()
 
 router.post('/', role("admin"), vehicleController.postVehicle);
+router.get('/', vehicleController.getVehicles)
 
 export const vehicleRoutes = router;
