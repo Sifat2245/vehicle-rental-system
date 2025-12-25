@@ -6,5 +6,6 @@ const router = Router()
 
 router.post('/', role("admin"), vehicleController.postVehicle);
 router.get('/', vehicleController.getVehicles)
+router.get('/:id', vehicleController.getSingleVehicle)
 
 export const vehicleRoutes = router;
