@@ -1,4 +1,3 @@
-import { get } from "http";
 import { pool } from "../../config/db";
 
 const postVehicle = async (payload: Record<string, unknown>) => {
@@ -45,9 +44,15 @@ const updateVehicle = async (
   return result
 }
 
+const deleteVehicle = async (id: number) =>{
+  const result = await pool.query(`DELETE FROM vehicles WHERE id = $1`, [id])
+  return result
+}
+
 export const vehicleServices = {
   postVehicle,
   getVehicles,
   getSingleVehicle,
   updateVehicle,
+  deleteVehicle
 };
