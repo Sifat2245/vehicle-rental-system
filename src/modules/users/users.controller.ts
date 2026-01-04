@@ -25,7 +25,7 @@ const getUsers = async (req: Request, res: Response) => {
 };
 
 const getSingleUser = async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
+  const id = Number(req.params.userId);
   try {
     const result = await userServices.getSingleUser(id);
     const response = {
@@ -62,7 +62,7 @@ const updateUser = async (req: Request, res: Response) => {
       req.body.email,
       req.body.phone,
       req.body.role,
-      Number(req.params.id)
+      Number(req.params.userId)
     );
     const response = {
       id: result?.rows[0]?.id,
@@ -93,7 +93,7 @@ const updateUser = async (req: Request, res: Response) => {
 
 const deleteUser = async (req: Request, res: Response) => {
   try {
-    const result = await userServices.deleteUser(Number(req.params.id));
+    const result = await userServices.deleteUser(Number(req.params.userId));
     if (result) {
       return res.status(200).json({
         success: true,

@@ -6,8 +6,8 @@ const router = Router()
 
 router.post('/', role("admin"), vehicleController.postVehicle);
 router.get('/', vehicleController.getVehicles)
-router.get('/:id', vehicleController.getSingleVehicle)
-router.put('/:id', role("admin"), vehicleController.updateVehicle)
-router.delete('/:id', role("admin"), vehicleController.deleteVehicle)
+router.get('/:vehicleId', vehicleController.getSingleVehicle)
+router.put('/:vehicleId', role("admin"), vehicleController.updateVehicle)
+router.delete('/:vehicleId', role("admin"), vehicleController.deleteVehicle)
 
 export const vehicleRoutes = router;

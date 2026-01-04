@@ -48,7 +48,7 @@ const getVehicles = async (req: Request, res: Response) => {
 };
 
 const getSingleVehicle = async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
+  const id = Number(req.params.vehicleId);
   try {
     const result = await vehicleServices.getSingleVehicle(id);
     if (result) {
@@ -79,7 +79,7 @@ const updateVehicle = async (req: Request, res: Response) => {
       req.body.registration_number,
       req.body.daily_rent_price,
       req.body.availability_status,
-      Number(req.params.id)
+      Number(req.params.vehicleId)
     );
     if (result) {
       return res.status(200).json({
@@ -103,7 +103,7 @@ const updateVehicle = async (req: Request, res: Response) => {
 
 const deleteVehicle = async (req: Request, res: Response) => {
   try {
-    const result = await vehicleServices.deleteVehicle(Number(req.params.id));
+    const result = await vehicleServices.deleteVehicle(Number(req.params.vehicleId));
     if (result) {
       return res.status(200).json({
         success: true,
